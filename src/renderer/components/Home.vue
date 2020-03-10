@@ -63,10 +63,9 @@ export default {
   methods: {
     readClipboard: function() {
       this.getClipboard();
-      this.readerPlay();
     },
     getClipboard: function() {
-      this.$store.dispatch({type: 'setText', text: this.$store.state.util.clipboard.readText()});
+      this.$store.dispatch({type: 'readerPlay', text: this.$store.state.util.clipboard.readText()});
     },
     readerPlay: function() {
       this.$store.dispatch({type: 'readerPlay', text: this.text});
