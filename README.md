@@ -9,9 +9,9 @@
 使用快捷键阅读剪贴板里面的文字
 
 
-1. 注册[  讯飞开放平台账号     ](https://www.xfyun.cn/)
+1. 注册 [讯飞开放平台账号](https://www.xfyun.cn/)
 1. 创建一个 APP
-1. 复制 API KEY 
+1. 复制 API KEY
 
 
 ## Debug
@@ -31,7 +31,7 @@ Prod 环境会关闭 Developer Tools 窗体
 # build 全部环境
 yarn build
 
-# build 特定环境 
+# build 特定环境
 yarn build:win32
 ```
 
@@ -39,11 +39,12 @@ yarn build:win32
 
 ## TODO
 
+- [] Ctrl+C 一键阅读 (截止 2020 没有找到 Solution)
 - [ ] Mac 版本太麻烦了谁来帮我 build 一下
 - [ ] CI/CD
 - [x] 软件图标
 - [ ] 暂停功能
-- [ ] 多语言? 
+- [ ] 多语言?
 - [ ] 自动更新
 - [ ] 保存到托盘?
 - [ ] 加个官方网站?
