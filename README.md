@@ -23,10 +23,16 @@ yarn run dev
 
 ## Build
 
-可能需要管理员权限
+Prod 环境会关闭 Developer Tools 窗体
+
+需要管理员权限
 
 ```
+# build 全部环境
 yarn build
+
+# build 特定环境 
+yarn build:win32
 ```
 
 
@@ -41,6 +47,7 @@ yarn build
 - [ ] 自动更新
 - [ ] 保存到托盘?
 - [ ] 加个官方网站?
+- [x] 默认快捷键
 - [x] 显示阅读状态
 - [x] 菜单
 - [x] 最大文本长度 13000 错误信息提醒
