@@ -37,7 +37,6 @@ function createWindow() {
 }
 
 const setHotKey = (hotkey) => {
-
   globalShortcut.unregisterAll();
 
   try {
