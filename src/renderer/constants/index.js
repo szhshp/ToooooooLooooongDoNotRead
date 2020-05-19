@@ -9,7 +9,8 @@ const PLAY_STATE = {
   ERROR: '合成失败',
 };
 
-const HOTKEY = ['Alt+C', 'Alt+X', 'Alt+Z'];
+const DEFAULT_HOTKEY = 'Alt+C';
+const HOTKEY = ['Alt+C', 'Alt+X', 'Alt+Z', 'Ctrl+Alt+C'];
 
 const API_CONFIG = {
   APPID: '5cfcf744',
@@ -18,4 +19,4 @@ const API_CONFIG = {
 };
 
 
-export {PLAY_STATE, API_CONFIG, HOTKEY};
+export {PLAY_STATE, API_CONFIG, HOTKEY, DEFAULT_HOTKEY};
