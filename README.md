@@ -39,7 +39,7 @@ yarn build:win32
 
 ## TODO
 
-- [] Ctrl+C 一键阅读 (截止 2020 没有找到 Solution)
+- [ ] Ctrl+C 一键阅读
 - [ ] Mac 版本太麻烦了谁来帮我 build 一下
 - [ ] CI/CD
 - [x] 软件图标
