@@ -9,8 +9,8 @@ const PLAY_STATE = {
   ERROR: '合成失败',
 };
 
-const DEFAULT_HOTKEY = 'Alt+C';
-const HOTKEY = ['Alt+C', 'Alt+X', 'Alt+Z', 'Ctrl+Alt+C'];
+const DEFAULT_HOTKEY = 'Ctrl+Space';
+const HOTKEY = ['Alt+C', 'Alt+X', 'Alt+Z', 'Ctrl+Alt+C', 'Ctrl+Space'];
 
 const API_CONFIG = {
   APPID: '5cfcf744',
