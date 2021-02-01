@@ -32,7 +32,6 @@ yarn build
 yarn build:win32
 ```
 
-
 ## TODO
 
 - 功能
@@ -43,6 +42,7 @@ yarn build:win32
   - [x] 最大文本长度 13000 错误信息提醒
   - [x] Error Handling
   - [ ] 保存到托盘
+  - [ ] 超出 2000 字就分多次调用
 - 快捷键
   - [x] 默认快捷键
   - [x] 快捷键绑定状态与信息
@@ -55,14 +55,17 @@ yarn build:win32
   - [x] Github 链接
   - [x] 加上开发者的帅气的联系方式
   - [x] 软件图标
+  - [ ] API Keys 输入之后显示不可见
 - 配置
   - [x] API Key 自定义
   - [x] 声音自定义
   - [x] 音调自定义
   - [x] 语速自定义
+  - [ ] 修改配置之后保存到本地
 - Release
   - [x] Build Alpha
   - [ ] ~~Mac 版本 (Mac 不是自带类似的功能嘛)~~
   - [ ] 官方网站
+  - [ ] Github 链接删掉
   - [ ] CI/CD
 
