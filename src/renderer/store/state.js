@@ -4,9 +4,9 @@ import {API_CONFIG, DEFAULT_HOTKEY} from '../constants/index';
 
 
 const experience = new Experience({
-  speed: 50,
+  speed: 80,
   voice: 50,
-  pitch: 50,
+  pitch: 40,
   ...API_CONFIG,
 });
 
