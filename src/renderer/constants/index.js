@@ -1,3 +1,9 @@
+const STORAGE_KEY = {
+  API_CONFIG: 'APIConfig',
+  HOTKEY: 'hotkey',
+  CONFIG: 'config',
+};
+
 const PLAY_STATE = {
   READY: '已就绪',
   LOADING: '正在合成',
@@ -18,5 +24,4 @@ const API_CONFIG = {
   API_KEY: 'bcbb00f840651c4de1686b11db01b549',
 };
 
-
-export {PLAY_STATE, API_CONFIG, HOTKEY, DEFAULT_HOTKEY};
+export {PLAY_STATE, API_CONFIG, HOTKEY, DEFAULT_HOTKEY, STORAGE_KEY};

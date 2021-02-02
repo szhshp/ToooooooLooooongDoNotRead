@@ -59,7 +59,7 @@ const setHotKey = (hotkey) => {
         return;
       }
       mainWindow.webContents.send('setMessage', {
-        content: '设置成功',
+        content: '设置快捷键成功',
         showMessage: true,
       });
     } else {
