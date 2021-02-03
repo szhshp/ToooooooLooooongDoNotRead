@@ -7,7 +7,7 @@
 
           <v-list-item-title class="card-item-title mb-1">字多不看</v-list-item-title>
           <v-list-item-title class="card-item-title mb-1">ToooooooLooooogDoNotRead</v-list-item-title>
-          <v-list-item-title class="card-item-title mb-1">V0.2</v-list-item-title>
+          <v-list-item-title class="card-item-title mb-1">V0.9.1</v-list-item-title>
           <v-list-item-subtitle>开发一个软件方便我偷懒</v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
