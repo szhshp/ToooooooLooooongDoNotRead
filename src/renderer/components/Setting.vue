@@ -6,10 +6,19 @@
           <v-list-item three-line>
             <v-list-item-content>
               <div class="about-title mb-4">快捷键</div>
-              <v-list-item-title class="about-item-title mb-1">快速阅读剪切板</v-list-item-title>
-              <v-list-item-subtitle>按下此快捷键将直接阅读剪贴板的文本</v-list-item-subtitle>
+              <v-list-item-title class="about-item-title mb-1"
+                >快速阅读剪切板</v-list-item-title
+              >
+              <v-list-item-subtitle
+                >按下此快捷键将直接阅读剪贴板的文本</v-list-item-subtitle
+              >
 
-              <v-select v-model="hotkey" :items="hotkeyItems" label="快捷键选择" required></v-select>
+              <v-select
+                v-model="hotkey"
+                :items="hotkeyItems"
+                label="快捷键选择"
+                required
+              ></v-select>
             </v-list-item-content>
           </v-list-item>
           <v-card-actions>
@@ -25,9 +34,27 @@
           <v-list-item three-line>
             <v-list-item-content>
               <div class="about-title mb-4">API Keys 设置</div>
-              <v-text-field v-model="APPID" :rules="rules" label="APPID" required></v-text-field>
-              <v-text-field v-model="API_SECRET" :rules="rules" label="API_SECRET" required></v-text-field>
-              <v-text-field v-model="API_KEY" :rules="rules" label="API_KEY" required></v-text-field>
+              <v-text-field
+                v-model="APPID"
+                :type="'password'"
+                :rules="rules"
+                label="APPID"
+                required
+              ></v-text-field>
+              <v-text-field
+                v-model="API_SECRET"
+                :type="'password'"
+                :rules="rules"
+                label="API_SECRET"
+                required
+              ></v-text-field>
+              <v-text-field
+                v-model="API_KEY"
+                :type="'password'"
+                :rules="rules"
+                label="API_KEY"
+                required
+              ></v-text-field>
             </v-list-item-content>
           </v-list-item>
           <v-card-actions>

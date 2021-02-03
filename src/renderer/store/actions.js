@@ -16,9 +16,9 @@ const validateText = (text) => {
       validatedText: text,
     };
   }
-  if (text.length > 1000) {
+  if (text.length > 10000) {
     return {
-      error: '最长1000个文字',
+      error: '内容长度须小于10000字',
       success: true,
       validatedText: text.substring(0, 1000),
     };
@@ -74,12 +74,12 @@ const actions = {
     store.commit('setAPIConfig', data);
     store.commit('setMessage', {
       showMessage: true,
-      content: '设置完成',
+      content: 'API 设置完成',
     });
   },
   setHotkey: async (store, data) => {
     try {
-      await ipcRenderer.send('setHotkey', data);
+      ipcRenderer.send('setHotkey', data);
       store.commit('setHotkey', data.hotkey);
     } catch (error) {
       store.commit('setMessage', {
@@ -92,7 +92,7 @@ const actions = {
     store.commit('setConfig', data);
     store.commit('setMessage', {
       showMessage: true,
-      content: '设置完成',
+      content: '语音设置完成',
     });
   },
   setMessage: (store, data) => {
