@@ -1,5 +1,12 @@
 /* eslint-disable require-jsdoc */
-import {app, BrowserWindow, globalShortcut, ipcMain, Menu} from 'electron';
+import {
+  app,
+  Tray,
+  BrowserWindow,
+  globalShortcut,
+  ipcMain,
+  Menu,
+} from 'electron';
 import {DEFAULT_HOTKEY} from '../../src/renderer/constants';
 
 /**
@@ -20,6 +27,7 @@ const winURL =
 
 function createWindow() {
   mainWindow = new BrowserWindow({
+    skipTaskbar: true,
     height: 600,
     width: 400,
     maxWidth: 400,
@@ -33,6 +41,11 @@ function createWindow() {
 
   mainWindow.on('closed', () => {
     mainWindow = null;
+  });
+
+  mainWindow.on('close', (event) => {
+    mainWindow.minimize();
+    event.preventDefault();
   });
 }
 
@@ -76,6 +89,7 @@ const setHotKey = (hotkey) => {
   }
 };
 
+let tray = null;
 
 app.on('ready', () => {
   createWindow();
@@ -87,6 +101,48 @@ app.on('ready', () => {
     setHotKey(hotkey);
   });
   setHotKey(DEFAULT_HOTKEY);
+
+  tray = new Tray('build/icons/icon.ico');
+  const contextMenu = Menu.buildFromTemplate([
+    {
+      label: '关于',
+      submenu: [
+        {
+          label: 'Github',
+          click: async () => {
+            const {shell} = require('electron');
+            await shell.openExternal(
+                'https://github.com/szhielelp/ToooooooLooooongDoNotRead',
+            );
+          },
+        },
+        {
+          label: '作者',
+          click: async () => {
+            const {shell} = require('electron');
+            await shell.openExternal('https://szhshp.org');
+          },
+        },
+      ],
+    },
+    {
+      label: '显示主窗口',
+      click: () => {
+        mainWindow.focus();
+        mainWindow.restore();
+      },
+    },
+    {
+      label: '退出',
+      click: () => app.exit(),
+    },
+  ]);
+  tray.on('double-click', () => {
+    mainWindow.focus();
+    mainWindow.restore();
+  });
+  tray.setToolTip('ToooooooLooooogDoNotRead');
+  tray.setContextMenu(contextMenu);
 });
 
 app.on('window-all-closed', () => {
