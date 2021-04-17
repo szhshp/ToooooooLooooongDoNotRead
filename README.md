@@ -9,8 +9,16 @@
 使用快捷键阅读剪贴板里面的文字
 
 1. 注册 [讯飞开放平台账号](https://www.xfyun.cn/)
-1. 创建一个 APP
-1. 复制 API KEY
+1. 到[控制台](https://console.xfyun.cn/app/myapp) 创建一个 APP, 拷贝下
+    
+     ![image](https://user-images.githubusercontent.com/10084666/115117637-2f460a80-9fd2-11eb-86f9-1d0f1f64fc75.png)
+     
+3. 复制对应的 `APPID`, `APISecret`, `APIKey` 到设置页面
+    
+     ![image](https://user-images.githubusercontent.com/10084666/115117652-408f1700-9fd2-11eb-8088-03feac59cf76.png)
+     
+
+
 
 ## Debug
 
