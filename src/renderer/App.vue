@@ -109,6 +109,9 @@ div.container {
   font-size: 1rem;
   font-weight: 900;
 }
+.v-input, .v-input .v-label {
+  font-size: 0.8em;
+}
 </style>
 
 

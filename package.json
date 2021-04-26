@@ -1,7 +1,7 @@
 {
   "name": "tooooooolooooongdonotread",
   "productName": "tooooooolooooongdonotread",
-  "version": "0.9.3",
+  "version": "0.9.4",
   "author": "szhielelp <24031shp@sina.com>",
   "description": "tooooooolooooongdonotread",
   "main": "./dist/electron/main.js",

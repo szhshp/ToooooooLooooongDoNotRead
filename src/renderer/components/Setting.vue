@@ -24,7 +24,7 @@
           <v-card-actions>
             <v-row>
               <v-col cols="auto" class="mr-auto">
-                <v-btn large class="mx-1" @click="setHotkey">确定</v-btn>
+                <v-btn small class="mx-1" @click="setHotkey">确定</v-btn>
               </v-col>
             </v-row>
           </v-card-actions>
@@ -60,7 +60,7 @@
           <v-card-actions>
             <v-row>
               <v-col cols="auto" class="mr-auto">
-                <v-btn large class="mx-1" @click="setAPIConfig">确定</v-btn>
+                <v-btn small class="mx-1" @click="setAPIConfig">确定</v-btn>
               </v-col>
             </v-row>
           </v-card-actions>
@@ -132,7 +132,7 @@
           <v-card-actions>
             <v-row>
               <v-col cols="auto" class="mr-auto">
-                <v-btn large class="mx-1" @click="setConfig">确定</v-btn>
+                <v-btn small class="mx-1" @click="setConfig">确定</v-btn>
               </v-col>
             </v-row>
           </v-card-actions>
@@ -196,6 +196,7 @@ export default {
   font-family: $GlobalFont;
 }
 .about-title {
-  font-size: 1.5rem;
+  font-size: 1rem;
+  font-weight: 900;
 }
 </style>
