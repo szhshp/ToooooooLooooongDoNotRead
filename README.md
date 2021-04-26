@@ -20,6 +20,8 @@
 
 ## Debug
 
+Ctrl + Shift + I: 打开 Dev Tools 
+
 > 如果是 Windows, 参考此文章先安装一些环境依赖: https://simulatedgreg.gitbooks.io/electron-vue/content/en/getting_started.html#a-note-for-windows-users
 > 
 > 主要的依赖内容是 windows-build-tools
