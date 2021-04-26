@@ -88,6 +88,9 @@ export default {
 body {
   font-family: $GlobalFont;
 }
+div.container {
+  padding: 4px
+}
 .v-application {
   font-family: $GlobalFont;
   line-height: 1.5;

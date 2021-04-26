@@ -18,42 +18,25 @@ let webConfig = {
   },
   module: {
     rules: [
-      /* use Vuetify rules instead */
-      /*  {
-         test: /\.scss$/,
-         use: ['vue-style-loader', 'css-loader', 'sass-loader']
-       },
-       {
-         test: /\.sass$/,
-         use: ['vue-style-loader', 'css-loader', 'sass-loader?indentedSyntax']
-       }, */
-
-      /* Vuetify rules */
       {
-        test: /\.s(c|a)ss$/,
-        use: [
-          'vue-style-loader',
-          'css-loader',
-          {
-            loader: 'sass-loader',
-            // Requires sass-loader@^7.0.0
-            options: {
-              implementation: require('sass'),
-              fiber: require('fibers'),
-              indentedSyntax: true // optional
-            },
-            // Requires sass-loader@^8.0.0
-            options: {
-              implementation: require('sass'),
-              sassOptions: {
-                fiber: require('fibers'),
-                indentedSyntax: true // optional
-              },
-            },
-          },
-        ],
+        test: /\.(js|vue)$/,
+        enforce: 'pre',
+        exclude: /node_modules/,
+        use: {
+          loader: 'eslint-loader',
+          options: {
+            formatter: require('eslint-friendly-formatter')
+          }
+        }
       },
-
+      {
+        test: /\.scss$/,
+        use: ['vue-style-loader', 'css-loader', 'sass-loader']
+      },
+      {
+        test: /\.sass$/,
+        use: ['vue-style-loader', 'css-loader', 'sass-loader?indentedSyntax']
+      },
       {
         test: /\.less$/,
         use: ['vue-style-loader', 'css-loader', 'less-loader']
@@ -69,7 +52,7 @@ let webConfig = {
       {
         test: /\.js$/,
         use: 'babel-loader',
-        include: [path.resolve(__dirname, '../src/renderer')],
+        include: [ path.resolve(__dirname, '../src/renderer') ],
         exclude: /node_modules/
       },
       {
@@ -110,10 +93,22 @@ let webConfig = {
   },
   plugins: [
     new VueLoaderPlugin(),
-    new MiniCssExtractPlugin({ filename: 'styles.css' }),
+    new MiniCssExtractPlugin({filename: 'styles.css'}),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: path.resolve(__dirname, '../src/index.ejs'),
+      templateParameters(compilation, assets, options) {
+        return {
+          compilation: compilation,
+          webpack: compilation.getStats().toJson(),
+          webpackConfig: compilation.options,
+          htmlWebpackPlugin: {
+            files: assets,
+            options: options,
+          },
+          process,
+        };
+      },
       minify: {
         collapseWhitespace: true,
         removeAttributeQuotes: true,
