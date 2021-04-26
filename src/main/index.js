@@ -102,8 +102,7 @@ app.on('ready', () => {
   });
   setHotKey(DEFAULT_HOTKEY);
 
-  tray = new Tray('build/icons/trayIcon.png');
-
+  tray = new Tray('build/icons/book.ico');
   const contextMenu = Menu.buildFromTemplate([
     {
       label: '关于',
