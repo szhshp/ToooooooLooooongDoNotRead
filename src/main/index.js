@@ -101,7 +101,8 @@ app.on("ready", () => {
     setHotKey(hotkey);
   });
   setHotKey(DEFAULT_HOTKEY);
-  const image = nativeImage.createFromPath(path.join(__dirname, "book.png"));
+
+  const image = nativeImage.createFromPath(path.join(__dirname, "../../build/icons/book.png"));
   const tray = new Tray(image);
   const contextMenu = Menu.buildFromTemplate([
     {
