@@ -42,7 +42,7 @@ async function build () {
 
   let results = ''
 
-  const tasks = new Listr(
+  const asyncTasks = new Listr(
     [
       {
         title: 'building master process',
@@ -74,7 +74,7 @@ async function build () {
     { concurrent: 2 }
   )
 
-  await tasks
+  await asyncTasks
     .run()
     .then(() => {
       process.stdout.write('\x1B[2J\x1B[0f')

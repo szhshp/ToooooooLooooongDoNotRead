@@ -6,9 +6,9 @@
           <v-list-item three-line>
             <v-list-item-content>
               <div class="about-title mb-4">快捷键</div>
-              <v-list-item-title class="about-item-title mb-1"
-                >快速阅读剪切板</v-list-item-title
-              >
+              <v-list-item-title class="about-item-title mb-1">
+                快速阅读剪切板
+              </v-list-item-title>
               <v-list-item-subtitle
                 >按下此快捷键将直接阅读剪贴板的文本</v-list-item-subtitle
               >
@@ -143,22 +143,22 @@
 </template>
 
 <script>
-import {shell} from 'electron';
-import {HOTKEY} from '../constants/index';
+import { shell } from "electron";
+import { HOTKEY } from "../constants/index";
 
 export default {
   data: function() {
     return {
-      ...['API_KEY', 'APPID', 'API_SECRET', 'speed', 'pitch', 'voice'].reduce(
-          (a, c) => {
-            a[c] = this.$store.state.instance.experience[c];
-            return a;
-          },
-          {},
+      ...["API_KEY", "APPID", "API_SECRET", "speed", "pitch", "voice"].reduce(
+        (a, c) => {
+          a[c] = this.$store.state.instance.experience[c];
+          return a;
+        },
+        {}
       ),
-      rules: [(v) => !!v || '请输入正确的 API Keys'],
+      rules: [(v) => !!v || "请输入正确的 API Keys"],
       hotkey: this.$store.state.app.hotkey,
-      hotkeyItems: ['None', ...HOTKEY],
+      hotkeyItems: ["None", ...HOTKEY],
     };
   },
   methods: {
@@ -166,19 +166,19 @@ export default {
       shell.openExternal(link);
     },
     setHotkey: function() {
-      this.$store.dispatch('setHotkey', {
+      this.$store.dispatch("setHotkey", {
         hotkey: this.hotkey,
       });
     },
     setAPIConfig: function() {
-      this.$store.dispatch('setAPIConfig', {
+      this.$store.dispatch("setAPIConfig", {
         API_KEY: this.API_KEY,
         APPID: this.APPID,
         API_SECRET: this.API_SECRET,
       });
     },
     setConfig: function() {
-      this.$store.dispatch('setConfig', {
+      this.$store.dispatch("setConfig", {
         voice: this.voice,
         pitch: this.pitch,
         speed: this.speed,
