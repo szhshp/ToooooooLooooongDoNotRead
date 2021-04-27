@@ -1,6 +1,11 @@
 import { clipboard } from "electron";
 import Experience from "@/utils/experience.js";
-import { API_CONFIG, DEFAULT_HOTKEY, STORAGE_KEY } from "../constants/index";
+import {
+  API_CONFIG,
+  DEFAULT_HOTKEY,
+  STORAGE_KEY,
+  DEFAULT_VOICENAME,
+} from "../constants/index";
 
 export const defaultVoiceConfig = {
   speed: 80,
@@ -21,10 +26,10 @@ const APIConfig = {
 };
 
 /* Hotkey config: Use saved config or default config */
-const hotkey = {
-  hotkey:
-    JSON.parse(localStorage.getItem(STORAGE_KEY.HOTKEY)) || DEFAULT_HOTKEY,
-};
+const hotkey =
+  JSON.parse(localStorage.getItem(STORAGE_KEY.HOTKEY)) || DEFAULT_HOTKEY;
+
+const voiceName = voiceConfig.voiceName || DEFAULT_VOICENAME;
 
 const experience = new Experience({
   ...voiceConfig,
@@ -42,7 +47,8 @@ const states = {
     experience,
   },
   app: {
-    ...hotkey,
+    hotkey,
+    voiceName,
     version: undefined,
     message: {
       success: false,

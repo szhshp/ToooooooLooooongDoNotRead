@@ -88,8 +88,8 @@ const actions = {
       });
     }
   },
-  setConfig: (store, data) => {
-    store.commit('setConfig', data);
+  setVoiceConfig: (store, data) => {
+    store.commit('setVoiceConfig', data);
     store.commit('setMessage', {
       showMessage: true,
       content: '语音设置完成',

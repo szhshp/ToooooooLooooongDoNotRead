@@ -20,24 +20,24 @@ class Experience {
     speed = defaultVoiceConfig.speed,
     voice = defaultVoiceConfig.voice,
     pitch = defaultVoiceConfig.pitch,
+    voiceName = defaultVoiceConfig.voiceName,
     API_KEY,
     API_SECRET,
     APPID,
     text = '',
     engineType = 'aisound',
-    voiceName = 'xiaoyan',
     defaultText = '',
   } = {}) {
     this.speed = speed;
     this.voice = voice;
     this.pitch = pitch;
+    this.voiceName = voiceName;
     this.API_KEY = API_KEY;
     this.API_SECRET = API_SECRET;
     this.APPID = APPID;
     this.text = text;
     this.defaultText = defaultText;
     this.engineType = engineType;
-    this.voiceName = voiceName;
     this.state = PLAY_STATE.READY;
     this.audioDatas = [];
   }

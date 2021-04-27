@@ -5,8 +5,8 @@ const mutations = {
     state.instance.experience.setAPIConfig(data);
     localStorage.setItem(STORAGE_KEY.API_CONFIG, JSON.stringify(data));
   },
-  setConfig: (state, data) => {
-    state.instance.experience.setConfig(data);
+  setVoiceConfig: (state, data) => {
+    state.instance.experience.setVoiceConfig(data);
     localStorage.setItem(STORAGE_KEY.CONFIG, JSON.stringify(data));
   },
   setHotkey: (state, data) => {

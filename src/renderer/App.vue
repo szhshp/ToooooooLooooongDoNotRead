@@ -2,7 +2,11 @@
   <div id="app">
     <v-snackbar v-model="message.showMessage" :timeout="timeout">
       {{ message.content }}
-      <v-btn color="black" text @click="hideMessage">Close</v-btn>
+      <template v-slot:action="{ attrs }">
+        <v-btn icon color="red" text v-bind="attrs" @click="message.showMessage = false">
+          <v-icon>mdi-close</v-icon>
+        </v-btn>
+      </template>
     </v-snackbar>
     <v-app-bar color="deep-purple accent-4" dense dark fixed>
       <v-tabs grow background-color="primary" dark id="topbar">
@@ -10,7 +14,8 @@
           v-for="route in routes"
           :key="route.name"
           @click="routeChange(route.path)"
-        >{{ route.name }}</v-tab>
+          >{{ route.name }}</v-tab
+        >
       </v-tabs>
 
       <v-spacer></v-spacer>
@@ -31,13 +36,13 @@
 </template>
 
 <script>
-import {shell, ipcRenderer} from 'electron';
-import routes from '@/router/routes';
-import {mapState} from 'vuex';
+import { shell, ipcRenderer } from "electron";
+import routes from "@/router/routes";
+import { mapState } from "vuex";
 
 export default {
   created: function() {
-    ipcRenderer.on('setMessage', (event, arg) => {
+    ipcRenderer.on("setMessage", (event, arg) => {
       this.showMessage(arg);
     });
   },
@@ -57,19 +62,19 @@ export default {
   },
   methods: {
     showMessage: function(arg) {
-      this.$store.dispatch('setMessage', arg);
+      this.$store.dispatch("setMessage", arg);
     },
     routeChange: function(path) {
       this.$router.push(path);
     },
     hideMessage: function() {
-      this.$store.dispatch('setMessage', {
+      this.$store.dispatch("setMessage", {
         showMessage: false,
       });
     },
     gimmeStar: function() {
       shell.openExternal(
-          'https://github.com/szhielelp/ToooooooLooooongDoNotRead',
+        "https://github.com/szhielelp/ToooooooLooooongDoNotRead"
       );
     },
   },
@@ -81,7 +86,6 @@ export default {
 };
 </script>
 
-
 <style lang="scss">
 @import "@/styles/mixin.scss";
 
@@ -89,7 +93,7 @@ body {
   font-family: $GlobalFont;
 }
 div.container {
-  padding: 4px
+  padding: 4px;
 }
 .v-application {
   font-family: $GlobalFont;
@@ -109,9 +113,8 @@ div.container {
   font-size: 1rem;
   font-weight: 900;
 }
-.v-input, .v-input .v-label {
+.v-input,
+.v-input .v-label {
   font-size: 0.8em;
 }
 </style>
-
-

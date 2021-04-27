@@ -70,12 +70,21 @@
           <v-list-item three-line>
             <v-list-item-content>
               <div class="about-title mb-4">语音设置</div>
+              <v-select
+                v-model="voiceName"
+                :items="voiceNames"
+                item-text="name"
+                item-value="value"
+                label="发音人"
+                required
+              ></v-select>
               <v-slider
                 v-model="speed"
                 label="语速"
                 class="align-center"
                 :max="100"
                 :min="0"
+                track-color="gray"
                 hide-details
               >
                 <template v-slot:append>
@@ -95,6 +104,7 @@
                 class="align-center"
                 :max="100"
                 :min="0"
+                track-color="gray"
                 hide-details
               >
                 <template v-slot:append>
@@ -114,6 +124,7 @@
                 class="align-center"
                 :max="100"
                 :min="0"
+                track-color="gray"
                 hide-details
               >
                 <template v-slot:append>
@@ -132,7 +143,7 @@
           <v-card-actions>
             <v-row>
               <v-col cols="auto" class="mr-auto">
-                <v-btn small class="mx-1" @click="setConfig">确定</v-btn>
+                <v-btn small class="mx-1" @click="setVoiceConfig">确定</v-btn>
               </v-col>
             </v-row>
           </v-card-actions>
@@ -144,7 +155,7 @@
 
 <script>
 import { shell } from "electron";
-import { HOTKEY } from "../constants/index";
+import { HOTKEYS, VOICENAMES } from "../constants/index";
 
 export default {
   data: function() {
@@ -158,7 +169,11 @@ export default {
       ),
       rules: [(v) => !!v || "请输入正确的 API Keys"],
       hotkey: this.$store.state.app.hotkey,
-      hotkeyItems: ["None", ...HOTKEY],
+      hotkeyItems: ["None", ...HOTKEYS],
+      voiceName: this.$store.state.app.voiceName,
+      voiceNames: VOICENAMES,
+      voiceNameLabels: VOICENAMES.map((e) => e.name),
+      voiceNameValues: VOICENAMES.map((e) => e.value),
     };
   },
   methods: {
@@ -177,11 +192,12 @@ export default {
         API_SECRET: this.API_SECRET,
       });
     },
-    setConfig: function() {
-      this.$store.dispatch("setConfig", {
+    setVoiceConfig: function() {
+      this.$store.dispatch("setVoiceConfig", {
         voice: this.voice,
         pitch: this.pitch,
         speed: this.speed,
+        voiceName: this.voiceName,
       });
     },
   },
