@@ -17,8 +17,8 @@ import { DEFAULT_HOTKEY } from "../../src/renderer/constants";
  */
 if (process.env.NODE_ENV !== "development") {
   global.__static = require("path")
-    .join(__dirname, "/static")
-    .replace(/\\/g, "\\\\");
+  .join(__dirname, "/static")
+  .replace(/\\/g, "\\\\");
 }
 
 let mainWindow;
@@ -102,8 +102,7 @@ app.on("ready", () => {
   });
   setHotKey(DEFAULT_HOTKEY);
 
-  const image = nativeImage.createFromPath(path.join(__dirname, "../../build/icons/book.png"));
-  const tray = new Tray(image);
+  const tray = new Tray(path.join(__static, 'book.ico'));
   const contextMenu = Menu.buildFromTemplate([
     {
       label: "关于",

@@ -1,15 +1,11 @@
 # ToooooooLooooongDoNotRead
 
-## 开发背景
-
-太长了不愿写
-
 ## 配置
 
 使用快捷键阅读剪贴板里面的文字
 
 1. 注册 [讯飞开放平台账号](https://www.xfyun.cn/)
-1. 到[控制台](https://console.xfyun.cn/app/myapp) 创建一个 APP, 拷贝下
+1. 到[控制台](https://console.xfyun.cn/app/myapp) 创建一个 APP, 查看以下内容
     
   ![image](https://user-images.githubusercontent.com/10084666/115117637-2f460a80-9fd2-11eb-86f9-1d0f1f64fc75.png)
      
@@ -17,34 +13,9 @@
     
   ![image](https://user-images.githubusercontent.com/10084666/115117652-408f1700-9fd2-11eb-8088-03feac59cf76.png)
      
+## Dev
 
-## Debug
-
-Ctrl + Shift + I: 打开 Dev Tools 
-
-> 如果是 Windows, 参考此文章先安装一些环境依赖: https://simulatedgreg.gitbooks.io/electron-vue/content/en/getting_started.html#a-note-for-windows-users
-> 
-> 主要的依赖内容是 windows-build-tools
-
-```
-yarn
-yarn run dev
-```
-
-## Build
-
-Prod 环境会关闭 Developer Tools 窗体
-
-Build 需要管理员权限
-
-```
-# build 全部环境
-yarn build
-
-# build 特定环境
-yarn build:win32
-```
-
+查看[开发文档](./doc/doc.md)
 ## TODO
 
 - 功能
