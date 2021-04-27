@@ -1,12 +1,16 @@
-import {clipboard} from 'electron';
-import Experience from '@/utils/experience.js';
-import {API_CONFIG, DEFAULT_HOTKEY, STORAGE_KEY} from '../constants/index';
+import { clipboard } from "electron";
+import Experience from "@/utils/experience.js";
+import { API_CONFIG, DEFAULT_HOTKEY, STORAGE_KEY } from "../constants/index";
 
-/* Voice config: Use saved config or default config */
-const voiceConfig = {
+export const defaultVoiceConfig = {
   speed: 80,
   voice: 50,
   pitch: 40,
+};
+
+/* Voice config: Use saved config or default config */
+const voiceConfig = {
+  ...defaultVoiceConfig,
   ...JSON.parse(localStorage.getItem(STORAGE_KEY.CONFIG)),
 };
 
@@ -29,7 +33,7 @@ const experience = new Experience({
 
 const states = {
   data: {
-    text: '这里显示剪切板的文本',
+    text: "这里显示剪切板的文本",
   },
   util: {
     clipboard,
@@ -42,7 +46,7 @@ const states = {
     version: undefined,
     message: {
       success: false,
-      content: '',
+      content: "",
       showMessage: false,
     },
   },

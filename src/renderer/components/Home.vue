@@ -1,10 +1,10 @@
 <template>
   <v-container fluid>
-    <v-card outlined elevation="4" class="mx-auto my-4">
+    <v-card outlined elevation="1" class="mx-auto my-4">
       <v-list-item three-line>
         <v-list-item-content>
           <v-textarea  
-          label="文本栏" 
+          label="在此处输入文本" 
           :value="text" 
           :no-resize="1"
           outlined
@@ -22,7 +22,6 @@
           <v-row justify="center">{{ status }}</v-row>
           <v-row justify="center">
             <v-col cols="auto">
-              <v-col cols="auto"></v-col>
               <v-btn
                 color="primary"
                 @click="readerPlay"

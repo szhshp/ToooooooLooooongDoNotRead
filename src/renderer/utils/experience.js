@@ -4,7 +4,7 @@ import hmacSHA256 from 'crypto-js/hmac-sha256';
 import Base64 from 'crypto-js/enc-base64';
 import transform from './audioTransfer';
 import {PLAY_STATE} from '../constants/index';
-
+import {defaultVoiceConfig} from '../store/state'
 let audioCtx;
 let source;
 
@@ -17,9 +17,9 @@ const notSupportTip = isChrome ?
 
 class Experience {
   constructor({
-    speed = 50,
-    voice = 50,
-    pitch = 50,
+    speed = defaultVoiceConfig.speed,
+    voice = defaultVoiceConfig.voice,
+    pitch = defaultVoiceConfig.pitch,
     API_KEY,
     API_SECRET,
     APPID,

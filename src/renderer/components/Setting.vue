@@ -2,7 +2,7 @@
   <div>
     <v-form v-model="valid">
       <v-container fluid>
-        <v-card outlined elevation="4" class="mx-auto my-4">
+        <v-card outlined elevation="1" class="mx-auto my-4">
           <v-list-item three-line>
             <v-list-item-content>
               <div class="about-title mb-4">快捷键</div>
@@ -30,7 +30,7 @@
           </v-card-actions>
         </v-card>
 
-        <v-card outlined elevation="4" class="mx-auto my-4">
+        <v-card outlined elevation="1" class="mx-auto my-4">
           <v-list-item three-line>
             <v-list-item-content>
               <div class="about-title mb-4">API Keys 设置</div>
@@ -66,7 +66,7 @@
           </v-card-actions>
         </v-card>
 
-        <v-card outlined elevation="4" class="mx-auto my-4">
+        <v-card outlined elevation="1" class="mx-auto my-4">
           <v-list-item three-line>
             <v-list-item-content>
               <div class="about-title mb-4">语音设置</div>
