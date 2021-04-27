@@ -3,16 +3,16 @@
     <v-card outlined elevation="1" class="mx-auto my-4">
       <v-list-item three-line>
         <v-list-item-content>
-          <v-textarea  
-          label="在此处输入文本" 
-          :value="text" 
-          :no-resize="1"
-          outlined
-          :auto-grow="1"
-          :clearable="1"
-          :fill="1"
-          @input="updateText"
-          rows="8"
+          <v-textarea
+            label="在此处输入文本"
+            :value="text"
+            :no-resize="1"
+            outlined
+            :auto-grow="1"
+            :clearable="1"
+            :fill="1"
+            @input="updateText"
+            rows="8"
           ></v-textarea>
         </v-list-item-content>
       </v-list-item>
@@ -32,8 +32,17 @@
                 <v-icon>mdi-play</v-icon>
               </v-btn>
               <v-btn
+                color="primary"
+                @click="readerPause"
+                fab
+                x-small
+                :disabled="!showPauseBtn"
+              >
+                <v-icon>mdi-pause</v-icon>
+              </v-btn>
+              <v-btn
                 color="error"
-                @click="readerPlay"
+                @click="readerStop"
                 fab
                 x-small
                 :disabled="!showStopBtn"
@@ -62,7 +71,7 @@ import { PLAY_STATE } from "../constants/index";
 import { ipcRenderer } from "electron";
 
 export default {
-  created: function () {
+  created: function() {
     ipcRenderer.on("triggerHotkey", (event, arg) => {
       this.readClipboard();
     });
@@ -86,17 +95,23 @@ export default {
     }),
   },
   methods: {
-    readClipboard: function () {
+    readClipboard: function() {
       this.getClipboard();
     },
-    getClipboard: function () {
+    getClipboard: function() {
       this.$store.dispatch({
         type: "readerPlay",
         text: this.$store.state.util.clipboard.readText(),
       });
     },
-    readerPlay: function () {
+    readerPlay: function() {
       this.$store.dispatch({ type: "readerPlay", text: this.text });
+    },
+    readerStop: function() {
+      this.$store.dispatch({ type: "readerStop" });
+    },
+    readerPause: function() {
+      this.$store.dispatch({ type: "readerPause" });
     },
     updateText(text) {
       this.$store.dispatch({ type: "setText", text: text });

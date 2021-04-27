@@ -1,19 +1,20 @@
 /* eslint-disable require-jsdoc */
-import CryptoJS from 'crypto-js';
-import hmacSHA256 from 'crypto-js/hmac-sha256';
-import Base64 from 'crypto-js/enc-base64';
-import transform from './audioTransfer';
-import {PLAY_STATE} from '../constants/index';
-import {defaultVoiceConfig} from '../store/state'
+import CryptoJS from "crypto-js";
+import hmacSHA256 from "crypto-js/hmac-sha256";
+import Base64 from "crypto-js/enc-base64";
+import transform from "./audioTransfer";
+import { PLAY_STATE } from "../constants/index";
+import { defaultVoiceConfig } from "../store/state";
 let audioCtx;
 let source;
+let startedAt, pausedAt;
 
-const DEFAULT_TEXT = '似乎没有获取到任何文本, 先复制一段文本再来尝试吧.';
+const DEFAULT_TEXT = "似乎没有获取到任何文本, 先复制一段文本再来尝试吧.";
 
 const isChrome = navigator.userAgent.toLowerCase().match(/chrome/);
-const notSupportTip = isChrome ?
-  '您的浏览器暂时不支持体验功能，请升级您的浏览器' :
-  '您现在使用的浏览器暂时不支持体验功能，<br />推荐使用谷歌浏览器Chrome';
+const notSupportTip = isChrome
+  ? "您的浏览器暂时不支持体验功能，请升级您的浏览器"
+  : "您现在使用的浏览器暂时不支持体验功能，<br />推荐使用谷歌浏览器Chrome";
 
 class Experience {
   constructor({
@@ -24,9 +25,9 @@ class Experience {
     API_KEY,
     API_SECRET,
     APPID,
-    text = '',
-    engineType = 'aisound',
-    defaultText = '',
+    text = "",
+    engineType = "aisound",
+    defaultText = "",
   } = {}) {
     this.speed = speed;
     this.voice = voice;
@@ -42,7 +43,7 @@ class Experience {
     this.audioDatas = [];
   }
 
-  setConfig({speed, voice, pitch, text, defaultText, engineType, voiceName}) {
+  setConfig({ speed, voice, pitch, text, defaultText, engineType, voiceName }) {
     speed && (this.speed = speed);
     voice && (this.voice = voice);
     pitch && (this.pitch = pitch);
@@ -53,16 +54,15 @@ class Experience {
     this.resetAudio();
   }
 
-
   getWebsocketUrl() {
     return new Promise((resolve, reject) => {
       const apiKey = this.API_KEY;
       const apiSecret = this.API_SECRET;
-      let url = 'wss://tts-api.xfyun.cn/v2/tts';
+      let url = "wss://tts-api.xfyun.cn/v2/tts";
       const host = location.host;
       const date = new Date().toGMTString();
-      const algorithm = 'hmac-sha256';
-      const headers = 'host date request-line';
+      const algorithm = "hmac-sha256";
+      const headers = "host date request-line";
       const signatureOrigin = `host: ${host}\ndate: ${date}\nGET /v2/tts HTTP/1.1`;
       const signatureSha = hmacSHA256(signatureOrigin, apiSecret);
       const signature = Base64.stringify(signatureSha);
@@ -73,10 +73,9 @@ class Experience {
     });
   }
 
-
   onmessageWork(e) {
     switch (e.command) {
-      case 'newAudioData': {
+      case "newAudioData": {
         this.audioDatas.push(e.data);
         if (this.state === PLAY_STATE.LOADING && this.audioDatas.length === 1) {
           this.playTimeout = setTimeout(() => {
@@ -88,13 +87,13 @@ class Experience {
     }
   }
 
-  setAPIConfig({API_KEY, API_SECRET, APPID}) {
+  setAPIConfig({ API_KEY, API_SECRET, APPID }) {
     this.API_KEY = API_KEY;
     this.API_SECRET = API_SECRET;
     this.APPID = APPID;
   }
 
-  setVoiceConfig({speed, voice, pitch, voiceName}) {
+  setVoiceConfig({ speed, voice, pitch, voiceName }) {
     this.speed = speed;
     this.voice = voice;
     this.pitch = pitch;
@@ -117,9 +116,9 @@ class Experience {
   }
 
   connectWebsocket(url) {
-    if ('WebSocket' in window) {
+    if ("WebSocket" in window) {
       this.websocket = new WebSocket(url);
-    } else if ('MozWebSocket' in window) {
+    } else if ("MozWebSocket" in window) {
       this.websocket = new MozWebSocket(url);
     } else {
       alert(notSupportTip);
@@ -133,19 +132,19 @@ class Experience {
         },
         business: {
           ent: self.engineType,
-          aue: 'raw',
-          auf: 'audio/L16;rate=16000',
+          aue: "raw",
+          auf: "audio/L16;rate=16000",
           vcn: self.voiceName,
           speed: self.speed,
           volume: self.voice * 10,
           pitch: self.pitch,
           // 'bgs': 1,
-          tte: 'UTF8',
+          tte: "UTF8",
         },
         data: {
           status: 2,
           text: CryptoJS.enc.Utf8.parse(
-              self.text || self.defaultText || DEFAULT_TEXT,
+            self.text || self.defaultText || DEFAULT_TEXT
           ).toString(CryptoJS.enc.Base64),
         },
       };
@@ -161,11 +160,11 @@ class Experience {
         return;
       }
       const newAudioData = transform.transData(
-          atob(jsonData.data.audio),
-          16000,
+        atob(jsonData.data.audio),
+        16000
       );
       this.onmessageWork({
-        command: 'newAudioData',
+        command: "newAudioData",
         data: newAudioData,
       });
 
@@ -183,7 +182,7 @@ class Experience {
   }
 
   resetAudio() {
-    this.audioPause();
+    this.audioStop();
     this.setState(PLAY_STATE.READY);
     this.audioDatasIndex = 0;
     this.audioDatas = [];
@@ -213,11 +212,19 @@ class Experience {
     }
   }
 
-  audioPause(state) {
-    if (this.state === PLAY_STATE.PLAYING) {
-      this.setState(state || PLAY_STATE.ENDPLAY);
-    }
+  audioPause() {
+    this.setState(PLAY_STATE.PAUSE);
+    pausedAt = Date.now() - startedAt;
     clearTimeout(this.playTimeout);
+    try {
+      source && source.stop();
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  audioStop() {
+    this.setState(PLAY_STATE.ENDPLAY);
     try {
       source && source.stop();
     } catch (e) {
@@ -227,6 +234,7 @@ class Experience {
 
   playSource() {
     let bufferLength = 0;
+    startedAt = Date.now();
     const dataLength = this.audioDatas.length;
     for (let i = this.audioDatasIndex; i < dataLength; i++) {
       bufferLength += this.audioDatas[i].length;
@@ -250,7 +258,13 @@ class Experience {
     source = audioCtx.createBufferSource();
     source.buffer = audioBuffer;
     source.connect(audioCtx.destination);
-    source.start();
+
+    if (pausedAt && this.state === PLAY_STATE.PAUSE) {
+      source.start(0, pausedAt / 1000);
+    } else {
+      source.start();
+    }
+
     source.onended = (event) => {
       if (this.state !== PLAY_STATE.PLAYING) {
         return;
@@ -258,7 +272,7 @@ class Experience {
       if (this.audioDatasIndex < this.audioDatas.length) {
         this.playSource();
       } else {
-        this.audioPause(PLAY_STATE.ENDPLAY);
+        this.audioStop();
       }
     };
   }
