@@ -74,6 +74,7 @@ export default {
   created: function() {
     ipcRenderer.on("triggerHotkey", (event, arg) => {
       this.readClipboard();
+      this.$router.push("/");
     });
   },
 

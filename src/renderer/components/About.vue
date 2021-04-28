@@ -8,7 +8,7 @@
             ToooooooLooooogDoNotRead
           </v-list-item-title>
           <v-list-item-title class="card-item-title mb-1"
-            >V0.9.4</v-list-item-title
+            >V0.9.5</v-list-item-title
           >
           <v-list-item-subtitle>开发一个软件方便我偷懒</v-list-item-subtitle>
         </v-list-item-content>

@@ -1,5 +1,4 @@
 import { ipcRenderer } from "electron";
-import { PLAY_STATE } from "../constants/index";
 
 const validateText = (text) => {
   if (typeof text !== "string") {
@@ -11,16 +10,16 @@ const validateText = (text) => {
   }
   if (text.trim().length === 0) {
     return {
-      error: "至少拷贝一个文字才能读取",
+      error: "至少拷贝一个文字才能阅读",
       success: false,
       validatedText: text,
     };
   }
   if (text.length > 10000) {
     return {
-      error: "内容长度须小于10000字",
+      error: "内容长度须小于 10000 字",
       success: true,
-      validatedText: text.substring(0, 1000),
+      validatedText: text.substring(0, 10000),
     };
   }
 
