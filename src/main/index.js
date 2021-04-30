@@ -36,6 +36,9 @@ function createWindow() {
     minWidth: 400,
     maxHeight: 600,
     minHeight: 600,
+    webPreferences: {
+      nodeIntegration: true,
+    }
   });
 
   mainWindow.loadURL(winURL);
