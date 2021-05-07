@@ -2,8 +2,10 @@
 
 ## Installation
 
+> 推荐直接使用 cnpm, 如果用 yarn 需要自行设置 electron-download 模块的下载镜像很是麻烦
+
 ```
-yarn
+cnpm i
 ```
 
 ### Windows 依赖安装: windows build tools
@@ -24,7 +26,7 @@ yarn
 ## Debug
 
 ```
-yarn dev
+cnpm run dev
 ```
 
 - Ctrl + Shift + I: 打开 Dev Tools (Prod 环境会完全关闭 Dev Tools 功能)
@@ -33,13 +35,14 @@ yarn dev
 
 ```
 # build 全部环境
-yarn build
+cnpm run build
 
 # build 特定环境
-yarn build:win32
+# 可能需要到 github 下载 electron-packager, 需要代理
+cnpm run build:win32
 ```
 
-## 软件图标
+## 软件图标相关
 
 1. [build/icons](../build/icons): 用于窗体 logo
 2. [static/book.ico](../static/book.ico): 用于任务栏 tray 的 logo 
